@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Export Arc Bookmarks to Firefox | Preserve Your Arc Sidebar Structure</title>
+<meta name="description" content="Complete guide to migrating Arc bookmarks to Mozilla Firefox before Arc's December 2026 shutdown. Keep your Spaces, folders, and pinned tabs intact.">
+<link rel="canonical" href="https://xerophilus.github.io/arc-bookmarks-export/arc-to-firefox/">
+<style>
+:root{--bg:#0f1020;--card:#181a33;--fg:#eef;--mut:#a9abd0;--acc:#ff5f6d;--acc2:#7c5cff}
+*{box-sizing:border-box}body{margin:0;font:16px/1.55 system-ui,-apple-system,Segoe UI,sans-serif;background:var(--bg);color:var(--fg)}
+main{max-width:860px;margin:auto;padding:24px}h1{font-size:2.1rem;line-height:1.2;margin:.5em 0}h2{margin-top:2em}
+a{color:#9db4ff}.card{background:var(--card);border-radius:14px;padding:20px;margin:16px 0}
+.cta{background:linear-gradient(90deg,var(--acc),var(--acc2));color:#fff;border:0;border-radius:10px;padding:12px 20px;font-size:1rem;font-weight:700;text-decoration:none;display:inline-block;margin:16px 0}
+.mut{color:var(--mut)}footer{color:var(--mut);font-size:.85rem;margin-top:3em}
+ol li{margin:12px 0}code{background:#262a50;padding:1px 5px;border-radius:5px}
+</style>
+</head>
+<body><main>
+<p class="mut"><a href="../">← Back to converter</a></p>
+
+<h1>How to Export Arc Bookmarks to Firefox</h1>
+
+<p>Firefox is a privacy-focused, open-source alternative to Chrome. If you're leaving Arc before it shuts down on December 22, 2026, this guide will help you bring your entire sidebar structure — Spaces, folders, and all — into Firefox.</p>
+
+<div class="card">
+<h2>Step-by-Step Instructions</h2>
+
+<h3>1. Get Your Arc Data</h3>
+<p><strong>Option A: StorableSidebar.json (Best for preserving structure)</strong></p>
+<ol>
+<li>Close Arc completely</li>
+<li>On <strong>Mac:</strong> Finder → Go → Go to Folder… → enter <code>~/Library/Application Support/Arc/</code> and press Go</li>
+<li>On <strong>Windows:</strong> Press Win+R → type <code>%LOCALAPPDATA%\Packages\</code> → open the folder beginning with <code>TheBrowserCompany.Arc</code> → navigate to <code>LocalCache\Local\Arc\</code></li>
+<li>Copy <code>StorableSidebar.json</code> somewhere safe (like your Desktop)</li>
+</ol>
+
+<p><strong>Option B: Arc's Official Export</strong></p>
+<ol>
+<li>In Arc: File → Export Data</li>
+<li>Save <code>Arc Data Export.md</code></li>
+</ol>
+
+<h3>2. Convert to Firefox-Compatible Format</h3>
+<ol>
+<li>Visit the <a href="../">Arc Bookmarks Converter</a></li>
+<li>Drop your file (JSON or Markdown) onto the converter</li>
+<li>Review the free preview to verify your bookmarks parsed correctly</li>
+<li>Pay $7 to unlock the download and save <code>bookmarks.html</code></li>
+</ol>
+
+<h3>3. Import to Firefox</h3>
+<ol>
+<li>Open Firefox</li>
+<li>Press <strong>Ctrl+Shift+O</strong> (Windows/Linux) or <strong>Cmd+Shift+O</strong> (Mac) to open the Library</li>
+<li>Click <strong>Import and Backup</strong> at the top</li>
+<li>Select <strong>Import Bookmarks from HTML…</strong></li>
+<li>Choose your downloaded <code>bookmarks.html</code> file</li>
+<li>Click <strong>Open</strong></li>
+</ol>
+
+<p>All your Arc Spaces will appear as organized folders under "Arc Import" in Firefox's bookmarks menu.</p>
+</div>
+
+<div class="card">
+<h2>What Transfers to Firefox?</h2>
+<ul>
+<li>✅ All Spaces (each becomes a folder)</li>
+<li>✅ Pinned tabs with their URLs</li>
+<li>✅ Nested folder hierarchies</li>
+<li>✅ Favorites</li>
+<li>✅ Unpinned tabs from your "Today" section</li>
+<li>✅ Split View tabs (grouped in small folders)</li>
+</ul>
+</div>
+
+<div class="card">
+<h2>Why Not Use Firefox's Built-In Import?</h2>
+<p>Firefox has a great built-in importer for Chrome, Safari, Edge, and other browsers. Unfortunately, <strong>it can't read Arc's export format</strong> because Arc only exports Markdown lists, not the standard HTML bookmarks format.</p>
+<p>If you're looking for a free alternative, <a href="https://dia.so" rel="noopener">Dia</a> (The Browser Company's new browser) includes Arc import functionality at no cost.</p>
+</div>
+
+<a href="../" class="cta">→ Start Converting Your Arc Bookmarks</a>
+
+<footer>
+<p><strong>Arc Timeline:</strong> Arc will stop functioning on <strong>December 22, 2026</strong>. December 15, 2026 is the last day to request your account data from The Browser Company. <a href="../arc-shutdown-timeline/">Full shutdown timeline</a>.</p>
+<p>Need help? <a href="mailto:pittsdev@mail.grokbot.com">pittsdev@mail.grokbot.com</a> · <a href="../">Converter home</a></p>
+</footer>
+</main>
+</body>
+</html>
