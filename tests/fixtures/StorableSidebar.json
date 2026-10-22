@@ -1,0 +1,16 @@
+{"sidebar":{"containers":[{"global":{}},{"spaces":["S1",{"id":"S1","title":"Work","containerIDs":["pinned","P1","unpinned","U1"]},"S2",{"id":"S2","title":"Personal","containerIDs":["pinned","P2","unpinned","U2"]}],
+"items":[
+"TA",{"id":"TA","childrenIds":["F1"],"data":{"itemContainer":{"containerType":{"topApps":{"_0":{"default":{}}}}}}},
+"F1",{"id":"F1","parentID":"TA","title":null,"childrenIds":[],"data":{"tab":{"savedURL":"https://mail.google.com/","savedTitle":"Gmail"}}},
+"P1",{"id":"P1","childrenIds":["T1","D1"],"data":{"itemContainer":{"containerType":{"spaceItems":{"_0":"S1"}}}}},
+"T1",{"id":"T1","parentID":"P1","title":"GitHub","childrenIds":[],"data":{"tab":{"savedURL":"https://github.com/","savedTitle":"GitHub"}}},
+"D1",{"id":"D1","parentID":"P1","title":"Docs","childrenIds":["T2","D2"],"data":{"list":{}}},
+"T2",{"id":"T2","parentID":"D1","title":null,"childrenIds":[],"data":{"tab":{"savedURL":"https://developer.mozilla.org/?a=1&b=2","savedTitle":"MDN <Web Docs>"}}},
+"D2",{"id":"D2","parentID":"D1","title":"React","childrenIds":["T3"],"data":{"list":{}}},
+"T3",{"id":"T3","parentID":"D2","title":"React docs","childrenIds":[],"data":{"tab":{"savedURL":"https://react.dev/"}}},
+"U1",{"id":"U1","childrenIds":["T4"],"data":{"itemContainer":{"containerType":{"spaceItems":{"_0":"S1"}}}}},
+"T4",{"id":"T4","parentID":"U1","title":"Stripe","childrenIds":[],"data":{"tab":{"savedURL":"https://dashboard.stripe.com/"}}},
+"P2",{"id":"P2","childrenIds":["T5"],"data":{"itemContainer":{"containerType":{"spaceItems":{"_0":"S2"}}}}},
+"T5",{"id":"T5","parentID":"P2","title":"YouTube","childrenIds":[],"data":{"tab":{"savedURL":"https://youtube.com/"}}},
+"U2",{"id":"U2","childrenIds":[],"data":{"itemContainer":{"containerType":{"spaceItems":{"_0":"S2"}}}}}
+]}]},"version":1}
