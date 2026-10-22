@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Export Arc Bookmarks to Chrome, Firefox, Safari, Zen, Brave &amp; Edge | Arc Sunset Converter</title>
+<meta name="description" content="Arc stops working Dec 22, 2026. Convert your Arc sidebar (Spaces, pinned tabs, folders, favorites) into a standard bookmarks file for Chrome, Firefox, Safari, Zen, Brave, or Edge. 100% in your browser — nothing uploaded.">
+<link rel="canonical" href="https://xerophilus.github.io/arc-bookmarks-export/">
+<meta property="og:title" content="Export Arc bookmarks to any browser">
+<meta property="og:description" content="Keep your Spaces and folders. Runs locally, nothing uploaded.">
+<meta property="og:type" content="website">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"How do I export Arc bookmarks to Chrome?","acceptedAnswer":{"@type":"Answer","text":"Load StorableSidebar.json or Arc's Markdown export into this tool, download bookmarks.html, then in Chrome open Bookmarks > Import bookmarks and settings > Bookmarks HTML File."}},
+{"@type":"Question","name":"Are my bookmarks uploaded?","acceptedAnswer":{"@type":"Answer","text":"No. Parsing and conversion happen entirely in your browser with JavaScript. No file is sent to any server."}},
+{"@type":"Question","name":"When does Arc stop working?","acceptedAnswer":{"@type":"Answer","text":"The Browser Company announced Arc stops working on December 22, 2026."}}]}
+</script>
+<style>
+:root{--bg:#0f1020;--card:#181a33;--fg:#eef;--mut:#a9abd0;--acc:#ff5f6d;--acc2:#7c5cff}
+*{box-sizing:border-box}body{margin:0;font:16px/1.55 system-ui,-apple-system,Segoe UI,sans-serif;background:var(--bg);color:var(--fg)}
+main{max-width:860px;margin:auto;padding:24px}h1{font-size:2.1rem;line-height:1.2;margin:.5em 0}h2{margin-top:2em}
+a{color:#9db4ff}.card{background:var(--card);border-radius:14px;padding:20px;margin:16px 0}
+.privacy{border:2px solid #3ddc97;background:#10291f;color:#bff5dc;padding:12px 16px;border-radius:12px;font-weight:600}
+.drop{border:2px dashed #555a99;border-radius:14px;padding:28px;text-align:center;cursor:pointer}.drop.over{border-color:var(--acc)}
+button,.btn{background:linear-gradient(90deg,var(--acc),var(--acc2));color:#fff;border:0;border-radius:10px;padding:12px 20px;font-size:1rem;font-weight:700;cursor:pointer;text-decoration:none;display:inline-block}
+button[disabled]{opacity:.4;cursor:not-allowed}code{background:#262a50;padding:1px 5px;border-radius:5px;word-break:break-all}
+#tree{max-height:380px;overflow:auto;font-size:.92rem}#tree ul{list-style:none;padding-left:18px;margin:0}#tree .f{font-weight:600}
+.stats{display:flex;gap:18px;flex-wrap:wrap}.stats b{font-size:1.4rem}.mut{color:var(--mut)}details{margin:8px 0}summary{cursor:pointer;font-weight:600}
+.err{color:#ff9a9a}footer{color:var(--mut);font-size:.85rem;margin-top:3em}
+</style>
+</head>
+<body><main>
+<p class="mut">Arc stops working <strong>December 22, 2026</strong>. Don't lose your sidebar.</p>
+<h1>Export your Arc bookmarks to Chrome, Firefox, Safari, Zen, Brave, or Edge</h1>
+<p>Arc's built-in export is just a Markdown list of links. This tool turns your Arc sidebar — <strong>Spaces, pinned tabs, nested folders, and Favorites</strong> — into a standard bookmarks file that every major browser can import, with your structure intact.</p>
+<div class="privacy">🔒 100% private: your file never leaves your computer. Everything runs locally in your browser — nothing is uploaded, stored on a server, or tracked.</div>
+
+<section class="card" id="tool">
+<h2 style="margin-top:0">1. Load your Arc data</h2>
+<div class="drop" id="drop">Drop <code>StorableSidebar.json</code> or <code>Arc Data Export.md</code> here, or click to choose<br><span class="mut">(you can add both)</span>
+<input type="file" id="file" accept=".json,.md,.markdown,.txt" multiple hidden></div>
+<p class="mut">No file handy? <a href="#" id="sample">Try a sample</a>.</p>
+<div id="err" class="err"></div>
+<div id="result" hidden>
+<h2>2. Free preview</h2>
+<div class="stats"><div><b id="sLinks">0</b><br>bookmarks</div><div><b id="sFolders">0</b><br>folders</div><div><b id="sTop">0</b><br>Spaces / top-level</div></div>
+<div id="tree" class="card"></div>
+<h2>3. Download</h2>
+<div id="locked"><p>Unlock the download for a one-time <strong>$7</strong>. After checkout you'll be returned here and the download unlocks on this device. Your loaded file stays in this tab only — you may need to load it again after payment.</p>
+<a class="btn" id="buy" href="https://buy.stripe.com/5kQ3cvcnK2Wg752dBs7wA00">Unlock download — $7</a></div>
+<div id="unlocked" hidden><button id="dl">⬇ Download bookmarks.html</button></div>
+</div>
+</section>
+
+<section id="where">
+<h2>Where to find your Arc data</h2>
+<div class="card">
+<p><strong>Best: <code>StorableSidebar.json</code></strong> (keeps Spaces, pinned tabs, folders, Favorites). Quit Arc first, then:</p>
+<ul>
+<li><strong>Mac:</strong> Finder → Go → Go to Folder… → <code>~/Library/Application Support/Arc/</code> → <code>StorableSidebar.json</code></li>
+<li><strong>Windows:</strong> press Win+R and open <code>%LOCALAPPDATA%\Packages\</code>, then the folder starting with <code>TheBrowserCompany.Arc</code> → <code>LocalCache\Local\Arc\StorableSidebar.json</code></li>
+</ul>
+<p><strong>Alternative: Arc's Markdown export</strong> (<code>Arc Data Export.md</code>) — see Arc's guide <a href="https://resources.arc.net/hc/en-us/articles/25583851606039-How-Do-I-Export-My-Data-from-Arc" rel="noopener">How do I export my data from Arc</a>. Headings and indented lists become folders.</p>
+</div>
+</section>
+
+<section id="import">
+<h2>How to import into your new browser</h2>
+<details open><summary>Google Chrome</summary><p>Menu ⋮ → Bookmarks and lists → Import bookmarks and settings → choose <em>Bookmarks HTML File</em> → Choose File → select <code>bookmarks.html</code>.</p></details>
+<details><summary>Mozilla Firefox</summary><p>Ctrl/Cmd+Shift+O (Library) → Import and Backup → Import Bookmarks from HTML… → select the file.</p></details>
+<details><summary>Safari (Mac)</summary><p>File → Import From → Bookmarks HTML File… → select the file. Bookmarks appear in a folder named "Imported".</p></details>
+<details><summary>Microsoft Edge</summary><p>Settings → Profiles → Import browser data → Import from: <em>Favorites or bookmarks HTML file</em> → Choose file.</p></details>
+<details><summary>Brave</summary><p>Menu ☰ → Bookmarks → Import bookmarks and settings → <em>Bookmarks HTML File</em> → Choose file.</p></details>
+<details><summary>Zen Browser</summary><p>Zen is Firefox-based: Ctrl/Cmd+Shift+O → Import and Backup → Import Bookmarks from HTML…</p></details>
+<p class="mut">Everything is placed under a single "Arc Import" folder, with each Space as a subfolder, so nothing collides with your existing bookmarks.</p>
+</section>
+
+<section id="faq">
+<h2>FAQ</h2>
+<details><summary>Is my data uploaded anywhere?</summary><p>No. The converter is a static page; your file is read with the browser's FileReader API and converted in memory. You can even load the page, disconnect from the internet, and it still works.</p></details>
+<details><summary>What's included?</summary><p>Every Space (as a top-level folder), pinned tabs, nested folders, Favorites, and unpinned "Today" tabs (in their own subfolder). Split Views become small folders.</p></details>
+<details><summary>Why not just use Arc's export?</summary><p>Arc exports a Markdown file of links that browsers can't import. This tool converts it (or the richer sidebar file) into the universal Netscape bookmarks HTML format.</p></details>
+<details><summary>When does Arc stop working?</summary><p>According to <a href="https://resources.arc.net/hc/en-us/articles/44412972248471-Arc-Sunset-Key-Dates-and-What-to-Expect" rel="noopener">Arc's announcement</a>, December 22, 2026.</p></details>
+<details><summary>Why is it paid?</summary><p>The preview is free so you can confirm your data parses correctly before paying. The $7 one-time fee supports maintenance. The unlock is stored in this browser.</p></details>
+<details><summary>Refunds / support?</summary><p>Contact: <!-- TODO: add support email (do not use personal email) --><span>support contact coming soon</span>.</p></details>
+</section>
+
+<footer>
+<p><strong>Privacy:</strong> no uploads, no cookies, no analytics. Payment is handled by Stripe on its own checkout page; we only store an "unlocked" flag in your browser's localStorage.</p>
+<p><strong>Disclaimer:</strong> This is an independent tool, not affiliated with, endorsed by, or sponsored by The Browser Company. "Arc" is a trademark of its owner.</p>
+<p>Support: <!-- TODO: support contact --> TBD · <a href="https://github.com/xerophilus/arc-bookmarks-export">Source</a></p>
+</footer>
+</main>
+<script src="converter.js"></script>
+<script src="app.js"></script>
+</body></html>
