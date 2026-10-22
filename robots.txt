@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://xerophilus.github.io/arc-bookmarks-export/sitemap.xml

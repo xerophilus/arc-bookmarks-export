@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Arc Browser Shutdown Timeline | When Arc Stops Working</title>
+<meta name="description" content="Complete timeline of Arc browser's shutdown. Arc stops working December 22, 2026. Key dates, what happens to your data, and how to prepare.">
+<link rel="canonical" href="https://xerophilus.github.io/arc-bookmarks-export/arc-shutdown-timeline/">
+<style>
+:root{--bg:#0f1020;--card:#181a33;--fg:#eef;--mut:#a9abd0;--acc:#ff5f6d;--acc2:#7c5cff}
+*{box-sizing:border-box}body{margin:0;font:16px/1.55 system-ui,-apple-system,Segoe UI,sans-serif;background:var(--bg);color:var(--fg)}
+main{max-width:860px;margin:auto;padding:24px}h1{font-size:2.1rem;line-height:1.2;margin:.5em 0}h2{margin-top:2em}
+a{color:#9db4ff}.card{background:var(--card);border-radius:14px;padding:20px;margin:16px 0}
+.cta{background:linear-gradient(90deg,var(--acc),var(--acc2));color:#fff;border:0;border-radius:10px;padding:12px 20px;font-size:1rem;font-weight:700;text-decoration:none;display:inline-block;margin:16px 0}
+.mut{color:var(--mut)}footer{color:var(--mut);font-size:.85rem;margin-top:3em}
+.timeline{position:relative;padding-left:40px;margin:24px 0}
+.timeline-item{position:relative;padding:16px 0;border-left:2px solid #444}
+.timeline-item:before{content:'';position:absolute;left:-6px;top:24px;width:10px;height:10px;border-radius:50%;background:var(--acc)}
+.timeline-item.done:before{background:#3ddc97}
+.timeline-item h3{margin:0 0 8px 16px;color:var(--acc)}
+.timeline-item.done h3{color:#3ddc97}
+.timeline-item p{margin:0 0 0 16px}
+.warn{background:#4d1818;border-left:4px solid var(--acc);padding:12px 16px;border-radius:8px;margin:16px 0}
+ol li{margin:12px 0}
+</style>
+</head>
+<body><main>
+<p class="mut"><a href="../">← Back to converter</a></p>
+
+<h1>Arc Browser Shutdown Timeline</h1>
+
+<p>On September 25, 2024, The Browser Company announced that Arc browser will be sunsetted to focus development on <a href="https://dia.so" rel="noopener">Dia</a>, their new AI-first browser. Here's everything you need to know about Arc's shutdown and key dates.</p>
+
+<div class="warn">⚠️ <strong>Arc stops working on December 22, 2026.</strong> After this date, you will not be able to open or use Arc. Back up your data now.</div>
+
+<div class="card">
+<h2>Official Timeline</h2>
+<p>Source: <a href="https://resources.arc.net/hc/en-us/articles/44412972248471-Arc-Sunset-Key-Dates-and-What-to-Expect" rel="noopener">Arc Sunset: Key Dates and What to Expect</a> (The Browser Company)</p>
+
+<div class="timeline">
+<div class="timeline-item done">
+<h3>September 25, 2024</h3>
+<p><strong>Arc sunset announced.</strong> The Browser Company publicly announced Arc's end-of-life and unveiled Dia, their next browser.</p>
+</div>
+
+<div class="timeline-item done">
+<h3>October 1, 2024 – December 14, 2026</h3>
+<p><strong>Maintenance period.</strong> Arc continues to work normally. The Browser Company provides security updates and critical bug fixes, but no new features are being developed.</p>
+</div>
+
+<div class="timeline-item">
+<h3>December 15, 2026</h3>
+<p><strong>Last day to request account data.</strong> This is the final day you can request a complete export of your Arc account data (browsing history, settings, synced data) from The Browser Company. After this date, account data exports will no longer be available.</p>
+<p><em>Note: This does <strong>not</strong> affect your ability to manually back up StorableSidebar.json or use Arc's File → Export Data feature, which work locally on your computer.</em></p>
+</div>
+
+<div class="timeline-item">
+<h3>December 22, 2026</h3>
+<p><strong>Arc stops working.</strong> On this date, Arc will cease to function. You will not be able to launch or use the browser. All sync services will shut down.</p>
+</div>
+</div>
+</div>
+
+<div class="card">
+<h2>What Happens to Your Data?</h2>
+
+<h3>✅ What You Keep</h3>
+<ul>
+<li><strong>Local files:</strong> StorableSidebar.json and other local Arc data files remain on your computer after the shutdown, but you won't be able to open them in Arc.</li>
+<li><strong>Exported data:</strong> Any Markdown exports or bookmark conversions you've made will continue to work.</li>
+<li><strong>Imported bookmarks:</strong> If you've already moved your bookmarks to Chrome, Firefox, or another browser, they're safe.</li>
+</ul>
+
+<h3>❌ What You Lose</h3>
+<ul>
+<li><strong>Arc sync:</strong> Cloud-synced data (tabs, settings across devices) will be deleted from The Browser Company's servers.</li>
+<li><strong>Account data:</strong> After December 15, 2026, you can no longer request your full account data export.</li>
+<li><strong>Browser functionality:</strong> Arc will not open after December 22, 2026.</li>
+</ul>
+</div>
+
+<div class="card">
+<h2>What You Should Do Now</h2>
+<ol>
+<li><strong>Back up StorableSidebar.json</strong> — This file contains your complete sidebar structure. <a href="../storablesidebar-json/">See where to find it</a>.</li>
+<li><strong>Export your data from Arc</strong> — Use File → Export Data to get a Markdown list of your bookmarks.</li>
+<li><strong>Request your account data</strong> (if needed) — If you want a complete export of browsing history and synced settings, request it <strong>before December 15, 2026</strong> through Arc's support.</li>
+<li><strong>Convert your bookmarks</strong> — Use the <a href="../">Arc Bookmarks Converter</a> to create a standard bookmarks.html file you can import into any browser.</li>
+<li><strong>Choose a new browser</strong> — Popular choices for Arc users:
+<ul>
+<li><a href="https://dia.so" rel="noopener">Dia</a> (The Browser Company's new browser, includes free Arc import)</li>
+<li><a href="../arc-to-zen/">Zen Browser</a> (modern, Firefox-based)</li>
+<li><a href="../arc-to-chrome/">Google Chrome</a></li>
+<li><a href="../arc-to-firefox/">Mozilla Firefox</a></li>
+<li><a href="../arc-to-safari/">Safari</a> (Mac only)</li>
+</ul>
+</li>
+</ol>
+</div>
+
+<div class="card">
+<h2>Why is Arc Shutting Down?</h2>
+<p>The Browser Company is focusing its resources on <strong>Dia</strong>, a new AI-first browser designed to be "the browser that browses for you." Rather than maintaining two browsers, they decided to sunset Arc and offer migration tools to Dia.</p>
+<p>Arc was beloved by its community for features like Spaces, vertical tabs, Split View, and clean design. Many of these concepts are being reimagined in Dia with AI capabilities.</p>
+<p><strong>Is Dia free?</strong> Yes, Dia is free and includes built-in Arc import at no cost.</p>
+</div>
+
+<div class="card">
+<h2>Frequently Asked Questions</h2>
+
+<h3>Can I still use Arc after December 22, 2026?</h3>
+<p>No. According to The Browser Company's official announcement, Arc will stop functioning on that date.</p>
+
+<h3>Will Arc get security updates until December 22, 2026?</h3>
+<p>Yes. The Browser Company committed to security updates and critical bug fixes during the maintenance period (October 2024 through December 2026).</p>
+
+<h3>What if I don't export my data before December 22?</h3>
+<p>Your local files (like StorableSidebar.json) will remain on your computer, but you won't be able to open Arc to view or export your bookmarks. Back up your data <strong>now</strong> to avoid losing access.</p>
+
+<h3>Can I still sync Arc between devices?</h3>
+<p>Sync works until December 22, 2026. After that, all cloud sync services will be shut down.</p>
+
+<h3>Is there a free way to export Arc bookmarks?</h3>
+<p>Yes. Arc's built-in File → Export Data gives you a Markdown file for free. However, browsers can't import that format directly — you need to convert it. <a href="https://dia.so" rel="noopener">Dia</a> offers free Arc import. For other browsers (Chrome, Firefox, Safari), this converter is a paid tool ($7).</p>
+</div>
+
+<a href="../" class="cta">→ Convert Your Arc Bookmarks Before It's Too Late</a>
+
+<footer>
+<p><strong>Official source:</strong> <a href="https://resources.arc.net/hc/en-us/articles/44412972248471-Arc-Sunset-Key-Dates-and-What-to-Expect" rel="noopener">Arc Sunset: Key Dates and What to Expect</a> (The Browser Company)</p>
+<p>Questions? <a href="mailto:pittsdev@mail.grokbot.com">pittsdev@mail.grokbot.com</a> · <a href="../">Converter home</a></p>
+</footer>
+</main>
+</body>
+</html>
