@@ -7,141 +7,310 @@
 <meta name="description" content="Complete guide to Arc's StorableSidebar.json file: what it contains, where to find it on Mac and Windows, and how to back it up before Arc shuts down.">
 <link rel="canonical" href="https://xerophilus.github.io/arc-bookmarks-export/storablesidebar-json/">
 <style>
-:root{--bg:#0f1020;--card:#181a33;--fg:#eef;--mut:#a9abd0;--acc:#ff5f6d;--acc2:#7c5cff}
-*{box-sizing:border-box}body{margin:0;font:16px/1.55 system-ui,-apple-system,Segoe UI,sans-serif;background:var(--bg);color:var(--fg)}
-main{max-width:860px;margin:auto;padding:24px}h1{font-size:2.1rem;line-height:1.2;margin:.5em 0}h2{margin-top:2em}
-a{color:#9db4ff}.card{background:var(--card);border-radius:14px;padding:20px;margin:16px 0}
-.cta{background:linear-gradient(90deg,var(--acc),var(--acc2));color:#fff;border:0;border-radius:10px;padding:12px 20px;font-size:1rem;font-weight:700;text-decoration:none;display:inline-block;margin:16px 0}
-.mut{color:var(--mut)}footer{color:var(--mut);font-size:.85rem;margin-top:3em}
-ol li{margin:12px 0}code{background:#262a50;padding:1px 5px;border-radius:5px;word-break:break-all}
-.warn{background:#332200;border-left:4px solid #ff9500;padding:12px 16px;border-radius:8px;margin:16px 0}
+:root {
+  --bg: #fff;
+  --text: #1a1a1a;
+  --text-muted: #666;
+  --border: #ddd;
+  --code-bg: #f5f5f5;
+  --accent: #d63031;
+  --accent-hover: #b82829;
+  --warn-bg: #fffbea;
+  --warn-border: #f59e0b;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0a0a0a;
+    --text: #e5e5e5;
+    --text-muted: #a3a3a3;
+    --border: #2a2a2a;
+    --code-bg: #1a1a1a;
+    --accent: #ef4444;
+    --accent-hover: #dc2626;
+    --warn-bg: #1a1406;
+    --warn-border: #f59e0b;
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 17px;
+  line-height: 1.65;
+  color: var(--text);
+  background: var(--bg);
+  padding: 32px 20px;
+}
+
+main {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+h1 {
+  font-size: 1.875rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 2rem 0 1rem;
+}
+
+h2 {
+  font-size: 1.375rem;
+  font-weight: 600;
+  margin: 2.5rem 0 1rem;
+}
+
+h3 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin: 1.5rem 0 0.75rem;
+}
+
+p, ul, ol {
+  margin: 0.75rem 0;
+}
+
+ul, ol {
+  padding-left: 1.5rem;
+}
+
+li {
+  margin: 0.5rem 0;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+code {
+  font-family: "SF Mono", Menlo, Monaco, "Courier New", monospace;
+  font-size: 0.875em;
+  background: var(--code-bg);
+  padding: 0.125rem 0.375rem;
+  border-radius: 3px;
+  word-break: break-all;
+}
+
+.small {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+.warn {
+  background: var(--warn-bg);
+  border-left: 3px solid var(--warn-border);
+  padding: 0.875rem 1rem;
+  margin: 1.5rem 0;
+  font-size: 0.9375rem;
+}
+
+.button {
+  display: inline-block;
+  background: var(--accent);
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.2s;
+  margin: 1.5rem 0;
+}
+
+.button:hover {
+  background: var(--accent-hover);
+  text-decoration: none;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  font-size: 0.9375rem;
+}
+
+th, td {
+  text-align: left;
+  padding: 0.75rem 0.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+th {
+  font-weight: 600;
+}
+
+footer {
+  margin-top: 4rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+footer p {
+  margin: 0.5rem 0;
+}
+
+@media (max-width: 640px) {
+  body {
+    padding: 16px;
+  }
+  
+  h1 {
+    font-size: 1.5rem;
+  }
+  
+  h2 {
+    font-size: 1.25rem;
+  }
+  
+  table {
+    font-size: 0.875rem;
+  }
+  
+  th, td {
+    padding: 0.5rem 0.25rem;
+  }
+}
 </style>
+<link rel="preconnect" href="https://fonts.bunny.net">
+<link href="https://fonts.bunny.net/css?family=newsreader:600,700|ia-writer-mono:400" rel="stylesheet">
 </head>
-<body><main>
-<p class="mut"><a href="../">← Back to converter</a></p>
+<body>
+<main>
+
+<p class="small"><a href="../">← Back to converter</a></p>
 
 <h1>What is StorableSidebar.json?</h1>
 
-<p><code>StorableSidebar.json</code> is Arc browser's internal database file that stores your complete sidebar structure — every Space, pinned tab, unpinned tab, folder, subfolder, and Favorite, including metadata like colors, icons, and timestamps.</p>
+<p><code>StorableSidebar.json</code> is Arc's internal file that stores your complete sidebar — every Space, pinned tab, folder, and Favorite, including metadata like colors and timestamps.</p>
 
-<p>It's the <strong>most complete representation</strong> of your Arc browsing setup, far more detailed than Arc's official Markdown export.</p>
+<p>It's the most complete representation of your Arc setup, far more detailed than Arc's Markdown export.</p>
 
-<div class="card">
-<h2>What's Inside StorableSidebar.json?</h2>
+<h2>What's inside</h2>
+
 <ul>
-<li>✅ All your Spaces (the colored containers in Arc's sidebar)</li>
-<li>✅ Pinned tabs in each Space</li>
-<li>✅ Unpinned "Today" tabs</li>
-<li>✅ Nested folders and their complete hierarchy</li>
-<li>✅ Favorites (the pinned items at the top of your sidebar)</li>
-<li>✅ Split Views (grouped tabs)</li>
-<li>✅ Metadata: colors, custom names, creation dates, URLs</li>
+  <li>All your Spaces</li>
+  <li>Pinned tabs in each Space</li>
+  <li>Unpinned "Today" tabs</li>
+  <li>Nested folders and their hierarchy</li>
+  <li>Favorites (pinned items at top)</li>
+  <li>Split Views (grouped tabs)</li>
+  <li>Metadata: colors, names, dates, URLs</li>
 </ul>
-<p>This file is stored locally on your computer and synced between devices if you use Arc's sync feature.</p>
+
+<p>The file is stored locally and synced between devices if you use Arc's sync.</p>
+
+<h2>Where to find it</h2>
+
+<div class="warn">
+<strong>Important:</strong> Quit Arc before accessing this file. Arc locks it while running. Copying while Arc is open may result in corruption.
 </div>
-
-<div class="card">
-<h2>Where to Find StorableSidebar.json</h2>
-
-<div class="warn">⚠️ <strong>Important:</strong> Quit Arc completely before accessing this file. Arc locks the file while running, and copying it while Arc is open may result in a corrupted or incomplete backup.</div>
 
 <h3>On Mac</h3>
 <ol>
-<li>Quit Arc (Cmd+Q or Arc menu → Quit Arc)</li>
-<li>Open Finder</li>
-<li>Click <strong>Go</strong> in the menu bar</li>
-<li>Select <strong>Go to Folder…</strong> (or press Shift+Cmd+G)</li>
-<li>Paste this path: <code>~/Library/Application Support/Arc/</code></li>
-<li>Press <strong>Go</strong></li>
-<li>You'll see <code>StorableSidebar.json</code> in the folder</li>
+  <li>Quit Arc (Cmd+Q)</li>
+  <li>Open Finder</li>
+  <li>Click <strong>Go</strong> in menu bar</li>
+  <li>Select <strong>Go to Folder…</strong> (Shift+Cmd+G)</li>
+  <li>Paste: <code>~/Library/Application Support/Arc/</code></li>
+  <li>Press <strong>Go</strong></li>
+  <li>You'll see <code>StorableSidebar.json</code></li>
 </ol>
 
 <h3>On Windows</h3>
 <ol>
-<li>Close Arc completely</li>
-<li>Press <strong>Win+R</strong> to open the Run dialog</li>
-<li>Type: <code>%LOCALAPPDATA%\Packages\</code> and press Enter</li>
-<li>Find the folder that starts with <code>TheBrowserCompany.Arc</code> (full name is something like <code>TheBrowserCompany.Arc_tq3kkv497wwe</code>)</li>
-<li>Open that folder, then navigate to: <code>LocalCache\Local\Arc\</code></li>
-<li>You'll find <code>StorableSidebar.json</code> there</li>
+  <li>Close Arc</li>
+  <li>Press <strong>Win+R</strong></li>
+  <li>Type: <code>%LOCALAPPDATA%\Packages\</code></li>
+  <li>Find folder starting with <code>TheBrowserCompany.Arc</code></li>
+  <li>Open it, then: <code>LocalCache\Local\Arc\</code></li>
+  <li>You'll find <code>StorableSidebar.json</code></li>
 </ol>
-</div>
 
-<div class="card">
-<h2>How to Back Up StorableSidebar.json</h2>
+<h2>How to back it up</h2>
+
 <ol>
-<li><strong>Quit Arc</strong> completely (very important!)</li>
-<li>Navigate to the file location using the instructions above</li>
-<li>Right-click <code>StorableSidebar.json</code></li>
-<li>Select <strong>Copy</strong> (Mac) or <strong>Copy</strong> (Windows)</li>
-<li>Paste it somewhere safe:
-<ul>
-<li>Your Desktop</li>
-<li>A Documents folder</li>
-<li>Cloud storage (Dropbox, Google Drive, iCloud, etc.)</li>
-<li>An external USB drive</li>
-</ul>
-</li>
-<li>Rename the copy to something like <code>StorableSidebar-backup-2026-10-22.json</code> so you remember when you saved it</li>
+  <li>Quit Arc completely</li>
+  <li>Navigate to the file using instructions above</li>
+  <li>Right-click <code>StorableSidebar.json</code></li>
+  <li>Select <strong>Copy</strong></li>
+  <li>Paste somewhere safe: Desktop, Documents, cloud storage, USB drive</li>
+  <li>Rename the copy: <code>StorableSidebar-backup-2026-10-22.json</code></li>
 </ol>
 
-<div class="warn">⚠️ <strong>Back up before December 22, 2026!</strong> Arc stops working on that date. After Arc shuts down, you may still be able to access this file, but it's safer to back it up now while Arc is still running.</div>
+<div class="warn">
+<strong>Back up before December 22, 2026.</strong> Arc stops working on that date. After shutdown you may still access this file, but it's safer to back up now.
 </div>
 
-<div class="card">
-<h2>Can I Edit StorableSidebar.json Manually?</h2>
-<p><strong>Not recommended.</strong> While it's a JSON text file and technically editable, Arc expects a specific structure with IDs, timestamps, and relationships between items. Manual edits can corrupt your sidebar or cause Arc to crash.</p>
-<p>If you want to convert it to a standard bookmarks file that works in Chrome, Firefox, Safari, or other browsers, use the <a href="../">Arc Bookmarks Converter</a>.</p>
-</div>
+<h2>Can I edit it manually?</h2>
 
-<div class="card">
-<h2>StorableSidebar.json vs Arc's Markdown Export</h2>
-<table style="width:100%;border-collapse:collapse">
-<tr style="border-bottom:1px solid #333">
-<th style="text-align:left;padding:8px"></th>
-<th style="text-align:left;padding:8px">StorableSidebar.json</th>
-<th style="text-align:left;padding:8px">Markdown Export</th>
-</tr>
-<tr style="border-bottom:1px solid #333">
-<td style="padding:8px"><strong>Spaces</strong></td>
-<td style="padding:8px">✅ Preserved</td>
-<td style="padding:8px">✅ Preserved (as headings)</td>
-</tr>
-<tr style="border-bottom:1px solid #333">
-<td style="padding:8px"><strong>Pinned tabs</strong></td>
-<td style="padding:8px">✅ All included</td>
-<td style="padding:8px">⚠️ Only some included</td>
-</tr>
-<tr style="border-bottom:1px solid #333">
-<td style="padding:8px"><strong>Folders</strong></td>
-<td style="padding:8px">✅ Fully nested</td>
-<td style="padding:8px">✅ As indented lists</td>
-</tr>
-<tr style="border-bottom:1px solid #333">
-<td style="padding:8px"><strong>Favorites</strong></td>
-<td style="padding:8px">✅ Yes</td>
-<td style="padding:8px">❌ No</td>
-</tr>
-<tr style="border-bottom:1px solid #333">
-<td style="padding:8px"><strong>Metadata</strong></td>
-<td style="padding:8px">✅ Colors, icons, dates</td>
-<td style="padding:8px">❌ None</td>
-</tr>
-<tr>
-<td style="padding:8px"><strong>Ease of access</strong></td>
-<td style="padding:8px">⚠️ Hidden system file</td>
-<td style="padding:8px">✅ File → Export Data</td>
-</tr>
+<p>Not recommended. While it's a JSON text file, Arc expects a specific structure with IDs, timestamps, and relationships. Manual edits can corrupt your sidebar or crash Arc.</p>
+
+<p>To convert it to standard bookmarks for Chrome, Firefox, or Safari, use the <a href="../">converter</a>.</p>
+
+<h2>StorableSidebar.json vs Markdown export</h2>
+
+<table>
+  <tr>
+    <th></th>
+    <th>StorableSidebar.json</th>
+    <th>Markdown Export</th>
+  </tr>
+  <tr>
+    <td><strong>Spaces</strong></td>
+    <td>Preserved</td>
+    <td>Preserved (as headings)</td>
+  </tr>
+  <tr>
+    <td><strong>Pinned tabs</strong></td>
+    <td>All included</td>
+    <td>Only some</td>
+  </tr>
+  <tr>
+    <td><strong>Folders</strong></td>
+    <td>Fully nested</td>
+    <td>Indented lists</td>
+  </tr>
+  <tr>
+    <td><strong>Favorites</strong></td>
+    <td>Yes</td>
+    <td>No</td>
+  </tr>
+  <tr>
+    <td><strong>Metadata</strong></td>
+    <td>Colors, icons, dates</td>
+    <td>None</td>
+  </tr>
+  <tr>
+    <td><strong>Access</strong></td>
+    <td>Hidden system file</td>
+    <td>File → Export Data</td>
+  </tr>
 </table>
-<p><strong>Recommendation:</strong> Use StorableSidebar.json if you want the most complete backup. Use the Markdown export if you only need a quick list of links.</p>
-</div>
 
-<a href="../" class="cta">→ Convert StorableSidebar.json to Standard Bookmarks</a>
+<p><strong>Recommendation:</strong> Use StorableSidebar.json for the most complete backup. Use Markdown export if you only need a quick list of links.</p>
+
+<a href="../" class="button">Convert to standard bookmarks</a>
 
 <footer>
-<p><strong>Arc Shutdown:</strong> Arc stops working <strong>December 22, 2026</strong>. Back up your data before that date. <a href="../arc-shutdown-timeline/">See the full timeline</a>.</p>
-<p>Questions? <a href="mailto:pittsdev@mail.grokbot.com">pittsdev@mail.grokbot.com</a> · <a href="../">Converter home</a></p>
+  <p>Arc stops <strong>December 22, 2026</strong>. Back up your data before that date. <a href="../arc-shutdown-timeline/">Full timeline</a></p>
+  <p>Questions? <a href="mailto:pittsdev@mail.grokbot.com">pittsdev@mail.grokbot.com</a> · <a href="../">Home</a></p>
 </footer>
+
 </main>
 </body>
 </html>

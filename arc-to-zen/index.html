@@ -7,93 +7,231 @@
 <meta name="description" content="Switch from Arc to Zen Browser before Arc's shutdown. Learn how to transfer your Spaces, folders, and bookmarks to Zen's beautifully designed interface.">
 <link rel="canonical" href="https://xerophilus.github.io/arc-bookmarks-export/arc-to-zen/">
 <style>
-:root{--bg:#0f1020;--card:#181a33;--fg:#eef;--mut:#a9abd0;--acc:#ff5f6d;--acc2:#7c5cff}
-*{box-sizing:border-box}body{margin:0;font:16px/1.55 system-ui,-apple-system,Segoe UI,sans-serif;background:var(--bg);color:var(--fg)}
-main{max-width:860px;margin:auto;padding:24px}h1{font-size:2.1rem;line-height:1.2;margin:.5em 0}h2{margin-top:2em}
-a{color:#9db4ff}.card{background:var(--card);border-radius:14px;padding:20px;margin:16px 0}
-.cta{background:linear-gradient(90deg,var(--acc),var(--acc2));color:#fff;border:0;border-radius:10px;padding:12px 20px;font-size:1rem;font-weight:700;text-decoration:none;display:inline-block;margin:16px 0}
-.mut{color:var(--mut)}footer{color:var(--mut);font-size:.85rem;margin-top:3em}
-ol li{margin:12px 0}code{background:#262a50;padding:1px 5px;border-radius:5px}
+:root {
+  --bg: #fff;
+  --text: #1a1a1a;
+  --text-muted: #666;
+  --border: #ddd;
+  --code-bg: #f5f5f5;
+  --accent: #d63031;
+  --accent-hover: #b82829;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0a0a0a;
+    --text: #e5e5e5;
+    --text-muted: #a3a3a3;
+    --border: #2a2a2a;
+    --code-bg: #1a1a1a;
+    --accent: #ef4444;
+    --accent-hover: #dc2626;
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 17px;
+  line-height: 1.65;
+  color: var(--text);
+  background: var(--bg);
+  padding: 32px 20px;
+}
+
+main {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+h1 {
+  font-size: 1.875rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 2rem 0 1rem;
+}
+
+h2 {
+  font-size: 1.375rem;
+  font-weight: 600;
+  margin: 2.5rem 0 1rem;
+}
+
+h3 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin: 1.5rem 0 0.75rem;
+}
+
+p, ul, ol {
+  margin: 0.75rem 0;
+}
+
+ul, ol {
+  padding-left: 1.5rem;
+}
+
+li {
+  margin: 0.5rem 0;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+code {
+  font-family: "SF Mono", Menlo, Monaco, "Courier New", monospace;
+  font-size: 0.875em;
+  background: var(--code-bg);
+  padding: 0.125rem 0.375rem;
+  border-radius: 3px;
+  word-break: break-all;
+}
+
+.small {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+.button {
+  display: inline-block;
+  background: var(--accent);
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.2s;
+  margin: 1.5rem 0;
+}
+
+.button:hover {
+  background: var(--accent-hover);
+  text-decoration: none;
+}
+
+footer {
+  margin-top: 4rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+footer p {
+  margin: 0.5rem 0;
+}
+
+@media (max-width: 640px) {
+  body {
+    padding: 16px;
+  }
+  
+  h1 {
+    font-size: 1.5rem;
+  }
+  
+  h2 {
+    font-size: 1.25rem;
+  }
+}
 </style>
+<link rel="preconnect" href="https://fonts.bunny.net">
+<link href="https://fonts.bunny.net/css?family=newsreader:600,700|ia-writer-mono:400" rel="stylesheet">
 </head>
-<body><main>
-<p class="mut"><a href="../">← Back to converter</a></p>
+<body>
+<main>
 
-<h1>How to Export Arc Bookmarks to Zen Browser</h1>
+<p class="small"><a href="../">← Back to converter</a></p>
 
-<p>Zen Browser is a beautifully designed, privacy-focused browser built on Firefox. It's a popular choice for Arc users looking for a similar modern aesthetic with vertical tabs and customizable workspaces. Here's how to migrate your Arc bookmarks before the December 22, 2026 shutdown.</p>
+<h1>Export Arc bookmarks to Zen Browser</h1>
 
-<div class="card">
-<h2>Step-by-Step Instructions</h2>
+<p>Zen is a modern, privacy-focused browser built on Firefox. It's popular with Arc users for its clean design, vertical tabs, and customizable workspaces. Here's how to migrate your bookmarks before Arc shuts down December 22, 2026.</p>
 
-<h3>1. Get Your Arc Data</h3>
-<p><strong>Option A: StorableSidebar.json (Recommended)</strong></p>
+<h2>Step 1: Get your Arc data</h2>
+
+<p><strong>Option A: StorableSidebar.json (recommended)</strong></p>
 <ol>
-<li>Close Arc completely</li>
-<li>On <strong>Mac:</strong> Finder → Go → Go to Folder… → paste <code>~/Library/Application Support/Arc/</code></li>
-<li>On <strong>Windows:</strong> Press Win+R → type <code>%LOCALAPPDATA%\Packages\</code> → find the folder starting with <code>TheBrowserCompany.Arc</code> → navigate to <code>LocalCache\Local\Arc\</code></li>
-<li>Copy <code>StorableSidebar.json</code> to a safe location</li>
+  <li>Close Arc</li>
+  <li><strong>Mac:</strong> Finder → Go → Go to Folder → <code>~/Library/Application Support/Arc/</code></li>
+  <li><strong>Windows:</strong> Win+R → <code>%LOCALAPPDATA%\Packages\</code> → folder starting with <code>TheBrowserCompany.Arc</code> → <code>LocalCache\Local\Arc\</code></li>
+  <li>Copy <code>StorableSidebar.json</code></li>
 </ol>
 
-<p><strong>Option B: Arc's Markdown Export</strong></p>
+<p><strong>Option B: Markdown export</strong></p>
 <ol>
-<li>In Arc: File → Export Data (see <a href="https://resources.arc.net/hc/en-us/articles/25583851606039" rel="noopener">Arc's export guide</a>)</li>
-<li>Save <code>Arc Data Export.md</code></li>
+  <li>Arc → File → Export Data</li>
+  <li>Save <code>Arc Data Export.md</code></li>
 </ol>
 
-<h3>2. Convert to Zen-Compatible Format</h3>
+<h2>Step 2: Convert</h2>
+
 <ol>
-<li>Visit the <a href="../">Arc Bookmarks Converter</a></li>
-<li>Drop your Arc export file onto the converter</li>
-<li>Preview your bookmark tree to confirm everything is correct</li>
-<li>Unlock the download for $7 and download <code>bookmarks.html</code></li>
+  <li>Visit the <a href="../">converter</a></li>
+  <li>Drop your file</li>
+  <li>Preview your bookmark tree</li>
+  <li>Pay $7, download <code>bookmarks.html</code></li>
 </ol>
 
-<h3>3. Import into Zen Browser</h3>
+<h2>Step 3: Import to Zen</h2>
+
 <ol>
-<li>Open Zen Browser</li>
-<li>Press <strong>Ctrl+Shift+O</strong> (Windows/Linux) or <strong>Cmd+Shift+O</strong> (Mac) to open the Library</li>
-<li>Click <strong>Import and Backup</strong> in the toolbar</li>
-<li>Select <strong>Import Bookmarks from HTML…</strong></li>
-<li>Choose your <code>bookmarks.html</code> file</li>
-<li>Click <strong>Open</strong></li>
+  <li>Open Zen Browser</li>
+  <li>Press <strong>Ctrl+Shift+O</strong> (Windows/Linux) or <strong>Cmd+Shift+O</strong> (Mac)</li>
+  <li>Click <strong>Import and Backup</strong></li>
+  <li>Select <strong>Import Bookmarks from HTML…</strong></li>
+  <li>Choose <code>bookmarks.html</code></li>
+  <li>Click <strong>Open</strong></li>
 </ol>
 
-<p>Your Arc Spaces will appear as organized folders under "Arc Import" in Zen's bookmarks system. You can then organize them into Zen's workspace feature.</p>
-</div>
+<p>Your Spaces appear as folders under "Arc Import". You can organize them into Zen's workspaces.</p>
 
-<div class="card">
-<h2>What Transfers to Zen?</h2>
+<h2>What transfers</h2>
+
 <ul>
-<li>✅ All Spaces (as bookmark folders)</li>
-<li>✅ Pinned tabs</li>
-<li>✅ Nested folders and hierarchies</li>
-<li>✅ Favorites</li>
-<li>✅ Unpinned "Today" tabs</li>
-<li>✅ Split View collections</li>
+  <li>All Spaces (as folders)</li>
+  <li>Pinned tabs</li>
+  <li>Nested folders</li>
+  <li>Favorites</li>
+  <li>Unpinned tabs</li>
+  <li>Split Views</li>
 </ul>
-</div>
 
-<div class="card">
-<h2>Why Zen for Arc Users?</h2>
-<p>Many Arc users are switching to Zen because it offers:</p>
+<h2>Why Zen for Arc users</h2>
+
+<p>Many Arc users like Zen because it has:</p>
 <ul>
-<li>🎨 Clean, modern interface similar to Arc's aesthetic</li>
-<li>📱 Vertical tabs and sidebar navigation</li>
-<li>🔒 Privacy-first (built on Firefox)</li>
-<li>🆓 Completely free and open source</li>
-<li>⚙️ Highly customizable workspaces</li>
+  <li>Clean, modern interface (similar to Arc)</li>
+  <li>Vertical tabs and sidebar navigation</li>
+  <li>Privacy-first (Firefox-based)</li>
+  <li>Free and open source</li>
+  <li>Customizable workspaces</li>
 </ul>
-<p>Zen uses Firefox's import system, which means it can't directly read Arc's Markdown export — that's where this converter helps.</p>
-<p>If you want a free Arc migration tool, <a href="https://dia.so" rel="noopener">Dia</a> (The Browser Company's new browser) includes Arc import built-in.</p>
-</div>
 
-<a href="../" class="cta">→ Convert Your Arc Bookmarks Now</a>
+<p>Zen uses Firefox's import system, so it can't read Arc's Markdown export directly — that's where this converter helps.</p>
+
+<p>Free alternative: <a href="https://dia.so" rel="noopener">Dia</a> (The Browser Company's new browser) includes Arc import.</p>
+
+<a href="../" class="button">Convert bookmarks</a>
 
 <footer>
-<p><strong>Arc Timeline:</strong> Arc stops working <strong>December 22, 2026</strong>. Request your account data by December 15, 2026. <a href="../arc-shutdown-timeline/">Full shutdown details</a>.</p>
-<p>Support: <a href="mailto:pittsdev@mail.grokbot.com">pittsdev@mail.grokbot.com</a> · <a href="../">Converter home</a></p>
+  <p>Arc stops <strong>December 22, 2026</strong>. Request account data by December 15. <a href="../arc-shutdown-timeline/">Timeline</a></p>
+  <p>Support: <a href="mailto:pittsdev@mail.grokbot.com">pittsdev@mail.grokbot.com</a> · <a href="../">Home</a></p>
 </footer>
+
 </main>
 </body>
 </html>
