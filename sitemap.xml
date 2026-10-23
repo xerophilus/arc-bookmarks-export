@@ -1,43 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://xerophilus.github.io/arc-bookmarks-export/</loc>
+    <loc>https://arc.pittsdev.com/</loc>
     <lastmod>2026-10-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://xerophilus.github.io/arc-bookmarks-export/arc-to-chrome/</loc>
+    <loc>https://arc.pittsdev.com/arc-to-chrome/</loc>
     <lastmod>2026-10-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://xerophilus.github.io/arc-bookmarks-export/arc-to-firefox/</loc>
+    <loc>https://arc.pittsdev.com/arc-to-firefox/</loc>
     <lastmod>2026-10-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://xerophilus.github.io/arc-bookmarks-export/arc-to-safari/</loc>
+    <loc>https://arc.pittsdev.com/arc-to-safari/</loc>
     <lastmod>2026-10-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://xerophilus.github.io/arc-bookmarks-export/arc-to-zen/</loc>
+    <loc>https://arc.pittsdev.com/arc-to-zen/</loc>
     <lastmod>2026-10-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://xerophilus.github.io/arc-bookmarks-export/storablesidebar-json/</loc>
+    <loc>https://arc.pittsdev.com/storablesidebar-json/</loc>
     <lastmod>2026-10-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://xerophilus.github.io/arc-bookmarks-export/arc-shutdown-timeline/</loc>
+    <loc>https://arc.pittsdev.com/arc-shutdown-timeline/</loc>
     <lastmod>2026-10-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
