@@ -1,0 +1,4 @@
+{"sidebar":{"containers":[{"global":{}},
+{"items":["E",{"id":"E","data":{"itemContainer":{"containerType":{"spaceItems":{"_0":"S0"}}}},"childrenIds":[]}],"spaces":["S0",{"id":"S0","containerIDs":["unpinned","E"]}]},
+{"items":["P",{"id":"P","data":{"itemContainer":{"containerType":{"spaceItems":{"_0":"S1"}}}},"childrenIds":["T"]},"T",{"id":"T","data":{"tab":{"savedURL":"https://example.com","savedTitle":"Ex"}},"childrenIds":[]}],
+ "spaces":["S1",{"id":"S1","title":"Work","containerIDs":["pinned","P"]}]}]}}
