@@ -16,82 +16,470 @@
 {"@type":"Question","name":"When does Arc stop working?","acceptedAnswer":{"@type":"Answer","text":"The Browser Company announced Arc stops working on December 22, 2026."}}]}
 </script>
 <style>
-:root{--bg:#0f1020;--card:#181a33;--fg:#eef;--mut:#a9abd0;--acc:#ff5f6d;--acc2:#7c5cff}
-*{box-sizing:border-box}body{margin:0;font:16px/1.55 system-ui,-apple-system,Segoe UI,sans-serif;background:var(--bg);color:var(--fg)}
-main{max-width:860px;margin:auto;padding:24px}h1{font-size:2.1rem;line-height:1.2;margin:.5em 0}h2{margin-top:2em}
-a{color:#9db4ff}.card{background:var(--card);border-radius:14px;padding:20px;margin:16px 0}
-.privacy{border:2px solid #3ddc97;background:#10291f;color:#bff5dc;padding:12px 16px;border-radius:12px;font-weight:600}
-.drop{border:2px dashed #555a99;border-radius:14px;padding:28px;text-align:center;cursor:pointer}.drop.over{border-color:var(--acc)}
-button,.btn{background:linear-gradient(90deg,var(--acc),var(--acc2));color:#fff;border:0;border-radius:10px;padding:12px 20px;font-size:1rem;font-weight:700;cursor:pointer;text-decoration:none;display:inline-block}
-button[disabled]{opacity:.4;cursor:not-allowed}code{background:#262a50;padding:1px 5px;border-radius:5px;word-break:break-all}
-#tree{max-height:380px;overflow:auto;font-size:.92rem}#tree ul{list-style:none;padding-left:18px;margin:0}#tree .f{font-weight:600}
-.stats{display:flex;gap:18px;flex-wrap:wrap}.stats b{font-size:1.4rem}.mut{color:var(--mut)}details{margin:8px 0}summary{cursor:pointer;font-weight:600}
-.err{color:#ff9a9a}footer{color:var(--mut);font-size:.85rem;margin-top:3em}
+:root {
+  --bg: #fff;
+  --text: #1a1a1a;
+  --text-muted: #666;
+  --border: #ddd;
+  --code-bg: #f5f5f5;
+  --accent: #d63031;
+  --accent-hover: #b82829;
+  --notice-bg: #fffbea;
+  --notice-border: #f59e0b;
+  --privacy-bg: #f0fdf4;
+  --privacy-border: #10b981;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0a0a0a;
+    --text: #e5e5e5;
+    --text-muted: #a3a3a3;
+    --border: #2a2a2a;
+    --code-bg: #1a1a1a;
+    --accent: #ef4444;
+    --accent-hover: #dc2626;
+    --notice-bg: #1a1406;
+    --notice-border: #f59e0b;
+    --privacy-bg: #021609;
+    --privacy-border: #10b981;
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text);
+  background: var(--bg);
+  padding: 20px;
+}
+
+main {
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+h1 {
+  font-size: 1.875rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 2rem 0 1rem;
+}
+
+h2 {
+  font-size: 1.375rem;
+  font-weight: 600;
+  margin: 2.5rem 0 1rem;
+}
+
+h3 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin: 1.5rem 0 0.75rem;
+}
+
+p, ul, ol {
+  margin: 0.75rem 0;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+code {
+  font-family: "SF Mono", Menlo, Monaco, "Courier New", monospace;
+  font-size: 0.875em;
+  background: var(--code-bg);
+  padding: 0.125rem 0.375rem;
+  border-radius: 3px;
+  word-break: break-all;
+}
+
+.notice {
+  background: var(--notice-bg);
+  border-left: 3px solid var(--notice-border);
+  padding: 0.875rem 1rem;
+  margin: 1.5rem 0;
+  font-size: 0.9375rem;
+}
+
+.privacy {
+  background: var(--privacy-bg);
+  border-left: 3px solid var(--privacy-border);
+  padding: 0.875rem 1rem;
+  margin: 1.5rem 0;
+  font-size: 0.9375rem;
+}
+
+.drop-zone {
+  border: 2px dashed var(--border);
+  border-radius: 6px;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  cursor: pointer;
+  margin: 1.5rem 0;
+  transition: border-color 0.2s;
+}
+
+.drop-zone:hover,
+.drop-zone.over {
+  border-color: var(--accent);
+}
+
+.small {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+button,
+.button {
+  display: inline-block;
+  background: var(--accent);
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+
+button:hover:not(:disabled),
+.button:hover {
+  background: var(--accent-hover);
+  text-decoration: none;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.price {
+  font-size: 0.9375rem;
+  color: var(--text-muted);
+  margin-top: 0.5rem;
+}
+
+.preview-mock {
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 1rem;
+  margin: 1.5rem 0;
+  font-size: 0.875rem;
+  background: var(--bg);
+}
+
+.preview-mock .stats {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.preview-mock .stat {
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+}
+
+.preview-mock .stat strong {
+  display: block;
+  font-size: 1.25rem;
+  color: var(--text);
+  font-weight: 600;
+}
+
+.preview-mock ul {
+  list-style: none;
+  margin: 0;
+}
+
+.preview-mock li {
+  margin: 0.25rem 0;
+  padding-left: 1rem;
+}
+
+.preview-mock .folder {
+  font-weight: 600;
+}
+
+.preview-mock .link {
+  color: var(--text-muted);
+}
+
+#tree {
+  max-height: 280px;
+  overflow: auto;
+  font-size: 0.875rem;
+}
+
+#tree ul {
+  list-style: none;
+  padding-left: 1rem;
+  margin: 0.25rem 0;
+}
+
+#tree .f {
+  font-weight: 600;
+}
+
+.err {
+  color: var(--accent);
+  font-size: 0.9375rem;
+  margin: 0.75rem 0;
+}
+
+.stats {
+  display: flex;
+  gap: 1.5rem;
+  margin: 1rem 0;
+}
+
+.stats > div strong {
+  display: block;
+  font-size: 1.25rem;
+}
+
+.stats > div {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+.import-steps {
+  margin: 1rem 0;
+}
+
+.import-steps details {
+  margin: 0.5rem 0;
+}
+
+.import-steps summary {
+  cursor: pointer;
+  font-weight: 600;
+  padding: 0.5rem 0;
+}
+
+.import-steps summary:hover {
+  color: var(--accent);
+}
+
+.faq-list {
+  list-style: none;
+  margin: 1rem 0;
+}
+
+.faq-list li {
+  margin: 1.5rem 0;
+}
+
+.faq-list strong {
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+footer {
+  margin-top: 4rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+footer p {
+  margin: 0.5rem 0;
+}
+
+@media (max-width: 640px) {
+  body {
+    padding: 16px;
+  }
+  
+  h1 {
+    font-size: 1.5rem;
+  }
+  
+  h2 {
+    font-size: 1.25rem;
+  }
+  
+  .stats {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  
+  .preview-mock .stats {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
 </style>
 </head>
-<body><main>
-<p class="mut">Arc stops working <strong>December 22, 2026</strong>. Don't lose your sidebar.</p>
-<h1>Export your Arc bookmarks to Chrome, Firefox, Safari, Zen, Brave, or Edge</h1>
-<p>Arc's built-in export is just a Markdown list of links. This tool turns your Arc sidebar — <strong>Spaces, pinned tabs, nested folders, and Favorites</strong> — into a standard bookmarks file that every major browser can import, with your structure intact.</p>
-<div class="privacy">🔒 100% private: your file never leaves your computer. Everything runs locally in your browser — nothing is uploaded, stored on a server, or tracked.</div>
+<body>
+<main>
 
-<section class="card" id="tool">
-<h2 style="margin-top:0">1. Load your Arc data</h2>
-<div class="drop" id="drop">Drop <code>StorableSidebar.json</code> or <code>Arc Data Export.md</code> here, or click to choose<br><span class="mut">(you can add both)</span>
-<input type="file" id="file" accept=".json,.md,.markdown,.txt" multiple hidden></div>
-<p class="mut">No file handy? <a href="#" id="sample">Try a sample</a>.</p>
+<p class="small">Arc shuts down <strong>December 22, 2026</strong></p>
+
+<h1>Convert Arc bookmarks to standard format</h1>
+
+<p>I built this because Arc is shutting down and their built-in export only gives you a Markdown list. This tool converts your Arc sidebar — Spaces, pinned tabs, folders, Favorites — into a proper bookmarks HTML file that Chrome, Firefox, Safari, and other browsers can import.</p>
+
+<div class="privacy">
+Your file never leaves your computer. Everything runs locally in JavaScript. Nothing uploaded, no tracking, no server.
+</div>
+
+<h2>How it works</h2>
+
+<div class="drop-zone" id="drop">
+  Drop <code>StorableSidebar.json</code> or <code>Arc Data Export.md</code> here<br>
+  <span class="small">(or click to choose a file)</span>
+  <input type="file" id="file" accept=".json,.md,.markdown,.txt" multiple hidden>
+</div>
+
+<p class="small">Don't have a file? <a href="#" id="sample">Load a sample</a></p>
+
 <div id="err" class="err"></div>
+
 <div id="result" hidden>
-<h2>2. Free preview</h2>
-<div class="stats"><div><b id="sLinks">0</b><br>bookmarks</div><div><b id="sFolders">0</b><br>folders</div><div><b id="sTop">0</b><br>Spaces / top-level</div></div>
-<div id="tree" class="card"></div>
-<h2>3. Download</h2>
-<div id="locked"><p>Unlock the download for a one-time <strong>$7</strong>. After checkout you'll be returned here and the download unlocks on this device. Your loaded file stays in this tab only — you may need to load it again after payment.</p>
-<a class="btn" id="buy" href="https://buy.stripe.com/5kQ3cvcnK2Wg752dBs7wA00">Unlock download — $7</a></div>
-<div id="unlocked" hidden><button id="dl">⬇ Download bookmarks.html</button></div>
+  <h3>Preview</h3>
+  <div class="stats">
+    <div><strong id="sLinks">0</strong> bookmarks</div>
+    <div><strong id="sFolders">0</strong> folders</div>
+    <div><strong id="sTop">0</strong> Spaces</div>
+  </div>
+  
+  <div id="tree" class="preview-mock"></div>
+  
+  <h3>Download</h3>
+  
+  <div id="locked">
+    <p>The preview is free. The download costs <strong>$7</strong> (one-time). After checkout you're redirected back here and the download unlocks on this device.</p>
+    <p class="small">Your loaded file stays in this tab only — you may need to drop it again after payment.</p>
+    <p><a class="button" id="buy" href="https://buy.stripe.com/5kQ3cvcnK2Wg752dBs7wA00">Pay $7 and unlock download</a></p>
+  </div>
+  
+  <div id="unlocked" hidden>
+    <button id="dl">Download bookmarks.html</button>
+    <p class="small">Not happy? Email within 14 days for a full refund.</p>
+  </div>
 </div>
-</section>
 
-<section id="where">
 <h2>Where to find your Arc data</h2>
-<div class="card">
-<p><strong>Best: <code>StorableSidebar.json</code></strong> (keeps Spaces, pinned tabs, folders, Favorites). Quit Arc first, then:</p>
+
+<p><strong>Best: <code>StorableSidebar.json</code></strong> (keeps Spaces, pinned tabs, folders, Favorites)</p>
+
+<p>Quit Arc first, then:</p>
 <ul>
-<li><strong>Mac:</strong> Finder → Go → Go to Folder… → <code>~/Library/Application Support/Arc/</code> → <code>StorableSidebar.json</code></li>
-<li><strong>Windows:</strong> press Win+R and open <code>%LOCALAPPDATA%\Packages\</code>, then the folder starting with <code>TheBrowserCompany.Arc</code> → <code>LocalCache\Local\Arc\StorableSidebar.json</code></li>
+  <li><strong>Mac:</strong> Finder → Go → Go to Folder → <code>~/Library/Application Support/Arc/</code></li>
+  <li><strong>Windows:</strong> Win+R, open <code>%LOCALAPPDATA%\Packages\</code>, find folder starting with <code>TheBrowserCompany.Arc</code>, then <code>LocalCache\Local\Arc\StorableSidebar.json</code></li>
 </ul>
-<p><strong>Alternative: Arc's Markdown export</strong> (<code>Arc Data Export.md</code>) — see Arc's guide <a href="https://resources.arc.net/hc/en-us/articles/25583851606039-How-Do-I-Export-My-Data-from-Arc" rel="noopener">How do I export my data from Arc</a>. Headings and indented lists become folders.</p>
+
+<p><strong>Alternative: Arc's Markdown export</strong> — In Arc: File → Export Data. See <a href="https://resources.arc.net/hc/en-us/articles/25583851606039-How-Do-I-Export-My-Data-from-Arc" rel="noopener">Arc's guide</a>.</p>
+
+<p class="small">More details: <a href="storablesidebar-json/">StorableSidebar.json explained</a></p>
+
+<h2>Import to your new browser</h2>
+
+<div class="import-steps">
+  <details open>
+    <summary>Chrome</summary>
+    <p>Menu (⋮) → Bookmarks and lists → Import bookmarks and settings → choose Bookmarks HTML File → select <code>bookmarks.html</code></p>
+  </details>
+  
+  <details>
+    <summary>Firefox</summary>
+    <p>Ctrl/Cmd+Shift+O → Import and Backup → Import Bookmarks from HTML → select the file</p>
+  </details>
+  
+  <details>
+    <summary>Safari (Mac)</summary>
+    <p>File → Import From → Bookmarks HTML File → select the file</p>
+  </details>
+  
+  <details>
+    <summary>Edge</summary>
+    <p>Settings → Profiles → Import browser data → Favorites or bookmarks HTML file</p>
+  </details>
+  
+  <details>
+    <summary>Brave</summary>
+    <p>Menu (☰) → Bookmarks → Import bookmarks and settings → Bookmarks HTML File</p>
+  </details>
+  
+  <details>
+    <summary>Zen Browser</summary>
+    <p>Ctrl/Cmd+Shift+O → Import and Backup → Import Bookmarks from HTML</p>
+  </details>
 </div>
-</section>
 
-<section id="import">
-<h2>How to import into your new browser</h2>
-<details open><summary>Google Chrome</summary><p>Menu ⋮ → Bookmarks and lists → Import bookmarks and settings → choose <em>Bookmarks HTML File</em> → Choose File → select <code>bookmarks.html</code>.</p></details>
-<details><summary>Mozilla Firefox</summary><p>Ctrl/Cmd+Shift+O (Library) → Import and Backup → Import Bookmarks from HTML… → select the file.</p></details>
-<details><summary>Safari (Mac)</summary><p>File → Import From → Bookmarks HTML File… → select the file. Bookmarks appear in a folder named "Imported".</p></details>
-<details><summary>Microsoft Edge</summary><p>Settings → Profiles → Import browser data → Import from: <em>Favorites or bookmarks HTML file</em> → Choose file.</p></details>
-<details><summary>Brave</summary><p>Menu ☰ → Bookmarks → Import bookmarks and settings → <em>Bookmarks HTML File</em> → Choose file.</p></details>
-<details><summary>Zen Browser</summary><p>Zen is Firefox-based: Ctrl/Cmd+Shift+O → Import and Backup → Import Bookmarks from HTML…</p></details>
-<p class="mut">Everything is placed under a single "Arc Import" folder, with each Space as a subfolder, so nothing collides with your existing bookmarks.</p>
-</section>
+<p class="small">Detailed guides: <a href="arc-to-chrome/">Chrome</a> · <a href="arc-to-firefox/">Firefox</a> · <a href="arc-to-safari/">Safari</a> · <a href="arc-to-zen/">Zen</a></p>
 
-<section id="faq">
-<h2>FAQ</h2>
-<details><summary>Is my data uploaded anywhere?</summary><p>No. The converter is a static page; your file is read with the browser's FileReader API and converted in memory. You can even load the page, disconnect from the internet, and it still works.</p></details>
-<details><summary>What's included?</summary><p>Every Space (as a top-level folder), pinned tabs, nested folders, Favorites, and unpinned "Today" tabs (in their own subfolder). Split Views become small folders.</p></details>
-<details><summary>Why not just use Arc's export?</summary><p>Arc exports a Markdown file of links that browsers can't import. This tool converts it (or the richer sidebar file) into the universal Netscape bookmarks HTML format.</p></details>
-<details><summary>When does Arc stop working?</summary><p>According to <a href="https://resources.arc.net/hc/en-us/articles/44412972248471-Arc-Sunset-Key-Dates-and-What-to-Expect" rel="noopener">Arc's announcement</a>, December 22, 2026.</p></details>
-<details><summary>Why is it paid?</summary><p>The preview is free so you can confirm your data parses correctly before paying. The $7 one-time fee supports maintenance. The unlock is stored in this browser.</p></details>
-<details><summary>Refunds / support?</summary><p><strong>Not happy? Email within 14 days for a full refund.</strong> Contact: <a href="mailto:pittsdev@mail.grokbot.com">pittsdev@mail.grokbot.com</a></p></details>
-</section>
+<h2>Questions</h2>
+
+<ul class="faq-list">
+  <li>
+    <strong>Is my data uploaded?</strong>
+    No. The converter is a static page. Your file is read with the browser FileReader API and converted in memory. You can load the page, disconnect from the internet, and it still works.
+  </li>
+  
+  <li>
+    <strong>What's included?</strong>
+    Every Space (as a folder), pinned tabs, nested folders, Favorites, and unpinned tabs. Split Views become small folders.
+  </li>
+  
+  <li>
+    <strong>Why not use Arc's export?</strong>
+    Arc exports a Markdown list that browsers can't import. This converts it into the standard Netscape HTML format.
+  </li>
+  
+  <li>
+    <strong>When does Arc stop working?</strong>
+    <a href="arc-shutdown-timeline/">December 22, 2026</a>. Request your account data by December 15.
+  </li>
+  
+  <li>
+    <strong>Are there free options?</strong>
+    Yes. <a href="https://dia.so" rel="noopener">Dia</a> (The Browser Company's new browser) includes Arc import at no cost.
+  </li>
+  
+  <li>
+    <strong>Why charge $7?</strong>
+    The preview is free so you can verify your data parses correctly. The fee supports maintenance and hosting.
+  </li>
+  
+  <li>
+    <strong>Refunds?</strong>
+    Not happy? Email <a href="mailto:pittsdev@mail.grokbot.com">pittsdev@mail.grokbot.com</a> within 14 days for a full refund.
+  </li>
+</ul>
 
 <footer>
-<p><strong>Privacy:</strong> no uploads, no cookies, no analytics. Payment is handled by Stripe on its own checkout page; we only store an "unlocked" flag in your browser's localStorage.</p>
-<p><strong>Disclaimer:</strong> This is an independent tool, not affiliated with, endorsed by, or sponsored by The Browser Company. "Arc" is a trademark of its owner.</p>
-<p>Support: <a href="mailto:pittsdev@mail.grokbot.com">pittsdev@mail.grokbot.com</a> · <a href="https://github.com/xerophilus/arc-bookmarks-export">Source</a></p>
-<p><strong>Learn more:</strong> <a href="arc-to-chrome/">Arc to Chrome</a> · <a href="arc-to-firefox/">Arc to Firefox</a> · <a href="arc-to-safari/">Arc to Safari</a> · <a href="arc-to-zen/">Arc to Zen</a> · <a href="storablesidebar-json/">StorableSidebar.json Guide</a> · <a href="arc-shutdown-timeline/">Arc Shutdown Timeline</a></p>
+  <p><strong>Privacy:</strong> No uploads, no cookies, no analytics. Payment handled by Stripe. An "unlocked" flag is stored in localStorage.</p>
+  
+  <p><strong>Disclaimer:</strong> Independent tool, not affiliated with The Browser Company. "Arc" is a trademark of its owner.</p>
+  
+  <p>Contact: <a href="mailto:pittsdev@mail.grokbot.com">pittsdev@mail.grokbot.com</a> · <a href="https://github.com/xerophilus/arc-bookmarks-export">Source</a></p>
+  
+  <p><a href="arc-shutdown-timeline/">Arc Shutdown Timeline</a> · <a href="storablesidebar-json/">StorableSidebar.json Guide</a></p>
 </footer>
+
 </main>
+
 <script src="converter.js"></script>
 <script src="app.js"></script>
-</body></html>
+</body>
+</html>

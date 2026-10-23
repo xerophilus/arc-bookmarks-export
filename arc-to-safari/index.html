@@ -7,85 +7,220 @@
 <meta name="description" content="Migrate your Arc browser bookmarks, Spaces, and folders to Safari on Mac before Arc's December 2026 shutdown. Simple step-by-step instructions.">
 <link rel="canonical" href="https://xerophilus.github.io/arc-bookmarks-export/arc-to-safari/">
 <style>
-:root{--bg:#0f1020;--card:#181a33;--fg:#eef;--mut:#a9abd0;--acc:#ff5f6d;--acc2:#7c5cff}
-*{box-sizing:border-box}body{margin:0;font:16px/1.55 system-ui,-apple-system,Segoe UI,sans-serif;background:var(--bg);color:var(--fg)}
-main{max-width:860px;margin:auto;padding:24px}h1{font-size:2.1rem;line-height:1.2;margin:.5em 0}h2{margin-top:2em}
-a{color:#9db4ff}.card{background:var(--card);border-radius:14px;padding:20px;margin:16px 0}
-.cta{background:linear-gradient(90deg,var(--acc),var(--acc2));color:#fff;border:0;border-radius:10px;padding:12px 20px;font-size:1rem;font-weight:700;text-decoration:none;display:inline-block;margin:16px 0}
-.mut{color:var(--mut)}footer{color:var(--mut);font-size:.85rem;margin-top:3em}
-ol li{margin:12px 0}code{background:#262a50;padding:1px 5px;border-radius:5px}
+:root {
+  --bg: #fff;
+  --text: #1a1a1a;
+  --text-muted: #666;
+  --border: #ddd;
+  --code-bg: #f5f5f5;
+  --accent: #d63031;
+  --accent-hover: #b82829;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0a0a0a;
+    --text: #e5e5e5;
+    --text-muted: #a3a3a3;
+    --border: #2a2a2a;
+    --code-bg: #1a1a1a;
+    --accent: #ef4444;
+    --accent-hover: #dc2626;
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text);
+  background: var(--bg);
+  padding: 20px;
+}
+
+main {
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+h1 {
+  font-size: 1.875rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 2rem 0 1rem;
+}
+
+h2 {
+  font-size: 1.375rem;
+  font-weight: 600;
+  margin: 2.5rem 0 1rem;
+}
+
+h3 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin: 1.5rem 0 0.75rem;
+}
+
+p, ul, ol {
+  margin: 0.75rem 0;
+}
+
+ul, ol {
+  padding-left: 1.5rem;
+}
+
+li {
+  margin: 0.5rem 0;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+code {
+  font-family: "SF Mono", Menlo, Monaco, "Courier New", monospace;
+  font-size: 0.875em;
+  background: var(--code-bg);
+  padding: 0.125rem 0.375rem;
+  border-radius: 3px;
+  word-break: break-all;
+}
+
+.small {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+.button {
+  display: inline-block;
+  background: var(--accent);
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.2s;
+  margin: 1.5rem 0;
+}
+
+.button:hover {
+  background: var(--accent-hover);
+  text-decoration: none;
+}
+
+footer {
+  margin-top: 4rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+footer p {
+  margin: 0.5rem 0;
+}
+
+@media (max-width: 640px) {
+  body {
+    padding: 16px;
+  }
+  
+  h1 {
+    font-size: 1.5rem;
+  }
+  
+  h2 {
+    font-size: 1.25rem;
+  }
+}
 </style>
 </head>
-<body><main>
-<p class="mut"><a href="../">← Back to converter</a></p>
+<body>
+<main>
 
-<h1>How to Export Arc Bookmarks to Safari</h1>
+<p class="small"><a href="../">← Back to converter</a></p>
 
-<p>Safari is Apple's native browser for Mac, iPhone, and iPad. If you're switching from Arc before it shuts down in December 2026, here's how to bring your Spaces, pinned tabs, and folder structure into Safari.</p>
+<h1>Export Arc bookmarks to Safari</h1>
 
-<div class="card">
-<h2>Step-by-Step Instructions</h2>
+<p>Safari is Apple's browser for Mac, iPhone, and iPad. Here's how to bring your Arc Spaces, tabs, and folders into Safari before Arc shuts down in December 2026.</p>
 
-<h3>1. Get Your Arc Data</h3>
-<p><strong>Option A: StorableSidebar.json (Preserves full structure)</strong></p>
+<h2>Step 1: Get your Arc data</h2>
+
+<p><strong>Option A: StorableSidebar.json (full structure)</strong></p>
 <ol>
-<li>Quit Arc</li>
-<li>On <strong>Mac:</strong> Open Finder → Go menu → Go to Folder… → type <code>~/Library/Application Support/Arc/</code></li>
-<li>Find <code>StorableSidebar.json</code> and copy it to your Desktop</li>
+  <li>Quit Arc</li>
+  <li><strong>Mac:</strong> Finder → Go → Go to Folder → <code>~/Library/Application Support/Arc/</code></li>
+  <li>Copy <code>StorableSidebar.json</code> to Desktop</li>
 </ol>
 
-<p><strong>Option B: Use Arc's Export Feature</strong></p>
+<p><strong>Option B: Arc's export</strong></p>
 <ol>
-<li>In Arc, go to File → Export Data</li>
-<li>Save the <code>Arc Data Export.md</code> file</li>
+  <li>Arc → File → Export Data</li>
+  <li>Save <code>Arc Data Export.md</code></li>
 </ol>
 
-<h3>2. Convert to Safari-Compatible HTML</h3>
+<h2>Step 2: Convert</h2>
+
 <ol>
-<li>Open the <a href="../">Arc Bookmarks Converter</a></li>
-<li>Drag your file (StorableSidebar.json or Arc Data Export.md) onto the page</li>
-<li>Check the free preview to ensure all your bookmarks were detected</li>
-<li>Unlock the download for $7 and save <code>bookmarks.html</code></li>
+  <li>Open the <a href="../">converter</a></li>
+  <li>Drop your file</li>
+  <li>Check the preview</li>
+  <li>Pay $7, download <code>bookmarks.html</code></li>
 </ol>
 
-<h3>3. Import into Safari</h3>
+<h2>Step 3: Import to Safari</h2>
+
 <ol>
-<li>Open Safari on your Mac</li>
-<li>Click <strong>File</strong> in the menu bar</li>
-<li>Select <strong>Import From</strong> → <strong>Bookmarks HTML File…</strong></li>
-<li>Choose your downloaded <code>bookmarks.html</code></li>
-<li>Click <strong>Import</strong></li>
+  <li>Open Safari</li>
+  <li>Click <strong>File</strong> in the menu bar</li>
+  <li>Select <strong>Import From</strong> → <strong>Bookmarks HTML File…</strong></li>
+  <li>Choose <code>bookmarks.html</code></li>
+  <li>Click <strong>Import</strong></li>
 </ol>
 
-<p>Your Arc bookmarks will appear in a new folder called "Imported" in Safari's bookmarks. Each of your Arc Spaces becomes a subfolder.</p>
-</div>
+<p>Your Arc bookmarks appear in a folder called "Imported". Each Space becomes a subfolder.</p>
 
-<div class="card">
-<h2>What Migrates to Safari?</h2>
+<h2>What migrates</h2>
+
 <ul>
-<li>✅ All Spaces (as organized folders)</li>
-<li>✅ Pinned tabs</li>
-<li>✅ Nested folder structures</li>
-<li>✅ Favorites</li>
-<li>✅ Unpinned tabs from "Today"</li>
-<li>✅ Split Views</li>
+  <li>All Spaces (as folders)</li>
+  <li>Pinned tabs</li>
+  <li>Nested folders</li>
+  <li>Favorites</li>
+  <li>Unpinned tabs</li>
+  <li>Split Views</li>
 </ul>
-<p><strong>Note:</strong> Safari doesn't support Arc's color coding or custom icons — those are visual features unique to Arc.</p>
-</div>
 
-<div class="card">
-<h2>Safari's Native Import vs. This Tool</h2>
-<p>Safari can import bookmarks from Chrome, Firefox, and other standard browsers using File → Import From. However, <strong>Safari cannot import Arc's Markdown export</strong> because Arc doesn't use the standard bookmarks format.</p>
-<p>This converter bridges that gap by transforming Arc's data into the universal Netscape HTML format that Safari (and every other browser) understands.</p>
-<p>Looking for a free option? <a href="https://dia.so" rel="noopener">Dia</a>, The Browser Company's new browser, includes built-in Arc import at no charge.</p>
-</div>
+<p class="small">Safari doesn't support Arc's color coding or custom icons — those are visual features unique to Arc.</p>
 
-<a href="../" class="cta">→ Convert Your Arc Bookmarks Now</a>
+<h2>Safari's import vs. this tool</h2>
+
+<p>Safari can import from Chrome, Firefox, and other browsers via File → Import From. But <strong>Safari can't import Arc's Markdown export</strong> because Arc doesn't use standard bookmarks format.</p>
+
+<p>Free option: <a href="https://dia.so" rel="noopener">Dia</a> (The Browser Company's new browser) includes Arc import.</p>
+
+<a href="../" class="button">Convert bookmarks</a>
 
 <footer>
-<p><strong>Arc Shutdown:</strong> Arc will stop working on <strong>December 22, 2026</strong>. You must request your account data by December 15, 2026. <a href="../arc-shutdown-timeline/">See the complete timeline</a>.</p>
-<p>Questions? <a href="mailto:pittsdev@mail.grokbot.com">pittsdev@mail.grokbot.com</a> · <a href="../">Back to converter</a></p>
+  <p>Arc stops <strong>December 22, 2026</strong>. Request account data by December 15. <a href="../arc-shutdown-timeline/">Timeline</a></p>
+  <p>Questions? <a href="mailto:pittsdev@mail.grokbot.com">pittsdev@mail.grokbot.com</a> · <a href="../">Home</a></p>
 </footer>
+
 </main>
 </body>
 </html>

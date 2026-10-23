@@ -7,85 +7,220 @@
 <meta name="description" content="Step-by-step guide to migrate your Arc browser bookmarks, Spaces, and folder structure to Google Chrome before Arc shuts down on December 22, 2026.">
 <link rel="canonical" href="https://xerophilus.github.io/arc-bookmarks-export/arc-to-chrome/">
 <style>
-:root{--bg:#0f1020;--card:#181a33;--fg:#eef;--mut:#a9abd0;--acc:#ff5f6d;--acc2:#7c5cff}
-*{box-sizing:border-box}body{margin:0;font:16px/1.55 system-ui,-apple-system,Segoe UI,sans-serif;background:var(--bg);color:var(--fg)}
-main{max-width:860px;margin:auto;padding:24px}h1{font-size:2.1rem;line-height:1.2;margin:.5em 0}h2{margin-top:2em}
-a{color:#9db4ff}.card{background:var(--card);border-radius:14px;padding:20px;margin:16px 0}
-.cta{background:linear-gradient(90deg,var(--acc),var(--acc2));color:#fff;border:0;border-radius:10px;padding:12px 20px;font-size:1rem;font-weight:700;text-decoration:none;display:inline-block;margin:16px 0}
-.mut{color:var(--mut)}footer{color:var(--mut);font-size:.85rem;margin-top:3em}
-ol li{margin:12px 0}code{background:#262a50;padding:1px 5px;border-radius:5px}
+:root {
+  --bg: #fff;
+  --text: #1a1a1a;
+  --text-muted: #666;
+  --border: #ddd;
+  --code-bg: #f5f5f5;
+  --accent: #d63031;
+  --accent-hover: #b82829;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0a0a0a;
+    --text: #e5e5e5;
+    --text-muted: #a3a3a3;
+    --border: #2a2a2a;
+    --code-bg: #1a1a1a;
+    --accent: #ef4444;
+    --accent-hover: #dc2626;
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text);
+  background: var(--bg);
+  padding: 20px;
+}
+
+main {
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+h1 {
+  font-size: 1.875rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 2rem 0 1rem;
+}
+
+h2 {
+  font-size: 1.375rem;
+  font-weight: 600;
+  margin: 2.5rem 0 1rem;
+}
+
+h3 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin: 1.5rem 0 0.75rem;
+}
+
+p, ul, ol {
+  margin: 0.75rem 0;
+}
+
+ul, ol {
+  padding-left: 1.5rem;
+}
+
+li {
+  margin: 0.5rem 0;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+code {
+  font-family: "SF Mono", Menlo, Monaco, "Courier New", monospace;
+  font-size: 0.875em;
+  background: var(--code-bg);
+  padding: 0.125rem 0.375rem;
+  border-radius: 3px;
+  word-break: break-all;
+}
+
+.small {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+.button {
+  display: inline-block;
+  background: var(--accent);
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.2s;
+  margin: 1.5rem 0;
+}
+
+.button:hover {
+  background: var(--accent-hover);
+  text-decoration: none;
+}
+
+footer {
+  margin-top: 4rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+footer p {
+  margin: 0.5rem 0;
+}
+
+@media (max-width: 640px) {
+  body {
+    padding: 16px;
+  }
+  
+  h1 {
+    font-size: 1.5rem;
+  }
+  
+  h2 {
+    font-size: 1.25rem;
+  }
+}
 </style>
 </head>
-<body><main>
-<p class="mut"><a href="../">← Back to converter</a></p>
+<body>
+<main>
 
-<h1>How to Export Arc Bookmarks to Chrome</h1>
+<p class="small"><a href="../">← Back to converter</a></p>
 
-<p>Google Chrome is the most popular browser, but it can't import Arc's Markdown export directly. This guide shows you how to convert your Arc sidebar — including Spaces, pinned tabs, and nested folders — into Chrome's bookmarks format.</p>
+<h1>Export Arc bookmarks to Chrome</h1>
 
-<div class="card">
-<h2>Step-by-Step Instructions</h2>
+<p>Chrome can't import Arc's Markdown export. Here's how to convert your Arc sidebar — Spaces, pinned tabs, folders — into Chrome's format.</p>
 
-<h3>1. Get Your Arc Data</h3>
-<p><strong>Option A: StorableSidebar.json (Recommended)</strong></p>
+<h2>Step 1: Get your Arc data</h2>
+
+<p><strong>Option A: StorableSidebar.json (recommended)</strong></p>
 <ol>
-<li>Quit Arc completely</li>
-<li>On <strong>Mac:</strong> Open Finder → Go → Go to Folder… → paste <code>~/Library/Application Support/Arc/</code></li>
-<li>On <strong>Windows:</strong> Press Win+R → type <code>%LOCALAPPDATA%\Packages\</code> → find the folder starting with <code>TheBrowserCompany.Arc</code> → open <code>LocalCache\Local\Arc\</code></li>
-<li>Find and copy <code>StorableSidebar.json</code> to your Desktop</li>
+  <li>Quit Arc completely</li>
+  <li><strong>Mac:</strong> Finder → Go → Go to Folder → paste <code>~/Library/Application Support/Arc/</code></li>
+  <li><strong>Windows:</strong> Win+R → type <code>%LOCALAPPDATA%\Packages\</code> → find folder starting with <code>TheBrowserCompany.Arc</code> → open <code>LocalCache\Local\Arc\</code></li>
+  <li>Copy <code>StorableSidebar.json</code> to your Desktop</li>
 </ol>
 
-<p><strong>Option B: Arc's Markdown Export</strong></p>
+<p><strong>Option B: Arc's Markdown export</strong></p>
 <ol>
-<li>In Arc, click File → Export Data (or see <a href="https://resources.arc.net/hc/en-us/articles/25583851606039" rel="noopener">Arc's guide</a>)</li>
-<li>Save the <code>Arc Data Export.md</code> file</li>
+  <li>In Arc: File → Export Data</li>
+  <li>Save <code>Arc Data Export.md</code></li>
 </ol>
 
-<h3>2. Convert to Chrome Format</h3>
+<h2>Step 2: Convert to Chrome format</h2>
+
 <ol>
-<li>Go to the <a href="../">Arc Bookmarks Converter</a></li>
-<li>Drag and drop your file (StorableSidebar.json or Arc Data Export.md)</li>
-<li>Preview your bookmarks to confirm everything looks correct</li>
-<li>Unlock the download for $7 and download <code>bookmarks.html</code></li>
+  <li>Go to the <a href="../">converter</a></li>
+  <li>Drop your file (StorableSidebar.json or Arc Data Export.md)</li>
+  <li>Preview your bookmarks</li>
+  <li>Pay $7 and download <code>bookmarks.html</code></li>
 </ol>
 
-<h3>3. Import to Chrome</h3>
+<h2>Step 3: Import to Chrome</h2>
+
 <ol>
-<li>Open Chrome</li>
-<li>Click the three-dot menu (⋮) in the top-right</li>
-<li>Go to <strong>Bookmarks and lists</strong> → <strong>Import bookmarks and settings</strong></li>
-<li>Select <strong>Bookmarks HTML File</strong> from the dropdown</li>
-<li>Click <strong>Choose File</strong> and select your downloaded <code>bookmarks.html</code></li>
-<li>Click <strong>Done</strong></li>
+  <li>Open Chrome</li>
+  <li>Click the three-dot menu (⋮) top-right</li>
+  <li>Go to <strong>Bookmarks and lists</strong> → <strong>Import bookmarks and settings</strong></li>
+  <li>Select <strong>Bookmarks HTML File</strong></li>
+  <li>Click <strong>Choose File</strong> and select <code>bookmarks.html</code></li>
+  <li>Click <strong>Done</strong></li>
 </ol>
 
-<p>Your Arc Spaces will appear as folders under a new "Arc Import" folder in Chrome's bookmarks bar or bookmarks manager (Ctrl/Cmd+Shift+O).</p>
-</div>
+<p>Your Arc Spaces appear as folders under "Arc Import" in Chrome's bookmarks (Ctrl/Cmd+Shift+O).</p>
 
-<div class="card">
-<h2>What Gets Converted?</h2>
+<h2>What gets converted</h2>
+
 <ul>
-<li>✅ All Spaces (as top-level folders)</li>
-<li>✅ Pinned tabs</li>
-<li>✅ Nested folders and subfolders</li>
-<li>✅ Favorites</li>
-<li>✅ Unpinned "Today" tabs</li>
-<li>✅ Split Views (as small folders)</li>
+  <li>All Spaces (as folders)</li>
+  <li>Pinned tabs</li>
+  <li>Nested folders</li>
+  <li>Favorites</li>
+  <li>Unpinned tabs</li>
+  <li>Split Views (as folders)</li>
 </ul>
-</div>
 
-<div class="card">
-<h2>Chrome Has Built-In Import Too</h2>
-<p>Chrome can import from other browsers like Firefox, Safari, and Edge using its built-in importer. However, <strong>it cannot import Arc's format directly</strong> — Arc exports Markdown files that Chrome doesn't recognize. That's where this converter helps.</p>
-<p>Some newer browsers like <a href="https://dia.so" rel="noopener">Dia</a> (Arc's spiritual successor from The Browser Company) include Arc import built-in at no cost.</p>
-</div>
+<h2>Free alternatives</h2>
 
-<a href="../" class="cta">→ Convert Your Arc Bookmarks Now</a>
+<p>Chrome has built-in import from Firefox, Safari, and Edge, but <strong>not from Arc</strong>. Arc's export is Markdown, which Chrome doesn't recognize.</p>
+
+<p><a href="https://dia.so" rel="noopener">Dia</a> (The Browser Company's new browser) includes free Arc import.</p>
+
+<a href="../" class="button">Convert your bookmarks</a>
 
 <footer>
-<p><strong>Why Arc is shutting down:</strong> The Browser Company is focusing on Dia, its new AI-first browser. Arc stops working <strong>December 22, 2026</strong>. <a href="../arc-shutdown-timeline/">See the full timeline</a>.</p>
-<p>Questions? Email <a href="mailto:pittsdev@mail.grokbot.com">pittsdev@mail.grokbot.com</a> · <a href="../">Main converter</a></p>
+  <p>Arc shuts down <strong>December 22, 2026</strong>. <a href="../arc-shutdown-timeline/">Full timeline</a></p>
+  <p>Questions? <a href="mailto:pittsdev@mail.grokbot.com">pittsdev@mail.grokbot.com</a> · <a href="../">Converter home</a></p>
 </footer>
+
 </main>
 </body>
 </html>
